@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E2BB5A"
+    tools:context=".SignUpFragment">
+
+    <ImageView
+        android:id="@+id/imageViewUp"
+        android:layout_width="197dp"
+        android:layout_height="228dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="107dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/beer_glass_svgrepo_com" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddressUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="9dp"
+        android:ems="10"
+        android:hint="@string/example_gmail_com"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberPasswordUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextUp" />
+
+    <EditText
+        android:id="@+id/editTextNumberPasswordUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="75dp"
+        android:ems="10"
+        android:hint="@string/_123456789"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/buttonUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddressUp"
+        tools:ignore="TextFields" />
+
+    <Button
+        android:id="@+id/buttonUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="109dp"
+        android:backgroundTint="#FF9800"
+        android:text="Continue"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberPasswordUp" />
+
+    <TextView
+        android:id="@+id/textViewUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginBottom="22dp"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUp" />
+
+    <EditText
+        android:id="@+id/editTextTextUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Ur Name"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddressUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
