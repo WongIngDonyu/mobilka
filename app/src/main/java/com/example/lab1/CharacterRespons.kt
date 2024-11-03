@@ -3,7 +3,7 @@ package com.example.lab1
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Character(
+data class CharacterRespons(
     val name: String = "",
     val culture: String = "",
     val born: String = "",

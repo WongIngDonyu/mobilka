@@ -1,0 +1,44 @@
+<!-- character_item.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name" />
+
+    <TextView
+        android:id="@+id/cultureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Culture" />
+
+    <TextView
+        android:id="@+id/bornTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Born" />
+
+    <TextView
+        android:id="@+id/titlesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titles" />
+
+    <TextView
+        android:id="@+id/aliasesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aliases" />
+
+    <TextView
+        android:id="@+id/playedByTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Played By" />
+</LinearLayout>

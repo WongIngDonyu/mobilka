@@ -46,7 +46,7 @@ class SignInFragment : Fragment() {
         binding.button2.setOnClickListener {
             val emailText = binding.editTextTextEmailAddress.text.toString()
             val passwordText = binding.editTextNumberPassword.text.toString()
-            if (emailText == "alo@bk.ru" && passwordText == "lol" || (emailText == regEmail && passwordText == regPass)) {
+            if (emailText == "123" && passwordText == "123" || (emailText == regEmail && passwordText == regPass)) {
                 findNavController().navigate(R.id.homeFragment)
             } else {
                 Toast.makeText(requireContext(), "Incorrect email or password", Toast.LENGTH_SHORT).show()

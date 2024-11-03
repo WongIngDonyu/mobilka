@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.lab1.HomeFragment"
-        android:label="Home Fragment"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.lab1.CharactersFragment"
+        android:label="Characters Fragment"
+        tools:layout="@layout/fragment_characters" />
 </navigation>
