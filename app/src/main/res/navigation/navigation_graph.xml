@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/mainFragment">
 
+    <!-- Существующие фрагменты -->
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.lab1.MainFragment"
@@ -11,6 +12,9 @@
         <action
             android:id="@+id/action_mainFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -22,7 +26,6 @@
             android:name="user"
             app:argType="com.example.lab1.User"
             app:nullable="true" />
-
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -52,4 +55,10 @@
         android:name="com.example.lab1.CharactersFragment"
         android:label="Characters Fragment"
         tools:layout="@layout/fragment_characters" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.lab1.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

@@ -19,7 +19,7 @@ import java.io.Serializable
 class SignInFragment : Fragment() {
 
     private var _binding: FragmentSignInBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is not initialized")
 
     private var regEmail: String? = null
     private var regPass: String? = null

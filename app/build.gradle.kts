@@ -59,5 +59,7 @@ dependencies {
     implementation(libs.ktor.client.serialization)
     implementation(libs.ktor.client.content.negotiation.v234)
     implementation(libs.ktor.serialization.kotlinx.json.v234)
+    implementation(libs.androidx.datastore.preferences)
+
 }
 

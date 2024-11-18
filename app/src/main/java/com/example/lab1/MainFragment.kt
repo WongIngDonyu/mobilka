@@ -13,7 +13,7 @@ import com.example.lab1.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is not initialized")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +28,9 @@ class MainFragment : Fragment() {
         binding.button.setOnClickListener {
             val action = MainFragmentDirections.actionMainFragmentToSignInFragment(null)
             findNavController().navigate(action)
+        }
+        binding.button4.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
         }
     }
 

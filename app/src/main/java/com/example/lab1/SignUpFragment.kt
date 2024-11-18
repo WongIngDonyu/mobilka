@@ -13,7 +13,7 @@ import com.example.lab1.databinding.FragmentSignUpBinding
 class SignUpFragment : Fragment() {
 
     private var _binding: FragmentSignUpBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is not initialized")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,6 +1,8 @@
 package com.example.lab1
 
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +13,16 @@ import com.example.lab1.databinding.FragmentCharactersBinding
 import com.example.lab1.network.DataSource
 import com.example.lab1.network.KtorNetworkApi
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class CharactersFragment : Fragment() {
     private var _binding: FragmentCharactersBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalStateException("Binding is not initialized")
 
     private var _ktorApi: KtorNetworkApi? = null
-    private val ktorApi get() = _ktorApi!!
+    private val ktorApi get() = _ktorApi ?: throw IllegalStateException("ktorApi is not initialized")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +44,7 @@ class CharactersFragment : Fragment() {
             lifecycleScope.launch {
                 val characters: List<CharacterRespons> = ktorApi.getCharacters()
                 binding.characterRecyclerView.adapter = CharacterAdapter(characters)
+                saveCharactersToFile(characters)
             }
         }
 
@@ -46,6 +52,34 @@ class CharactersFragment : Fragment() {
             (binding.characterRecyclerView.adapter as? CharacterAdapter)?.setData(emptyList())
         }
     }
+
+    private fun saveCharactersToFile(characters: List<CharacterRespons>) { //сохрание инфы в файл
+        val documentsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+        if (!documentsDir.exists()) {
+            documentsDir.mkdirs()
+        }
+        val fileName = "15.txt"
+        val file = File(documentsDir, fileName)
+        try {
+            FileOutputStream(file).use { outputStream ->
+                val content = characters.joinToString(separator = "\n\n") { character ->
+                    listOf(
+                        "Name: ${character.name.ifEmpty { "Unknown" }}",
+                        "Culture: ${character.culture.ifEmpty { "Unknown" }}",
+                        "Born: ${character.born.ifEmpty { "Unknown" }}",
+                        "Titles: ${character.titles.takeIf { it.isNotEmpty() }?.joinToString(", ") ?: "None"}",
+                        "Aliases: ${character.aliases.takeIf { it.isNotEmpty() }?.joinToString(", ") ?: "None"}",
+                        "Played By: ${character.playedBy.takeIf { it.isNotEmpty() }?.joinToString(", ") ?: "None"}"
+                    ).joinToString("\n")
+                }
+                outputStream.write(content.toByteArray())
+            }
+        } catch (e: IOException) {
+            Log.e("SaveFile", "Error writing file: ${e.message}")
+        }
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

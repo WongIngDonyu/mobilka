@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E2BB5A"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_dark_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Enable Dark Theme"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_dark_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/text_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Enable Notifications"
+            android:textSize="18sp" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/file_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="File status will appear here"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/delete_file_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete File"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/restore_file_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restore File"
+            android:visibility="gone" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
