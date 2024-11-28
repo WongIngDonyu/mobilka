@@ -11,3 +11,4 @@ data class CharacterRespons(
     val aliases: List<String> = emptyList(),
     val playedBy: List<String> = emptyList()
 )
+

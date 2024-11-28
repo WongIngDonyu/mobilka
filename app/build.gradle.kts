@@ -1,8 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt") // Подключаем плагин для KAPT
     id("androidx.navigation.safeargs")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10" // замените на текущую версию Kotlin
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
 }
 
 android {
@@ -41,7 +42,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.ktor.client.content.negotiation.v234)
     implementation(libs.ktor.serialization.kotlinx.json.v234)
     implementation(libs.androidx.datastore.preferences)
-
+    implementation(libs.androidx.room.runtime)
+    kapt("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.ktx)
 }
-

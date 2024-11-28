@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10" // замените на текущую версию Kotlin
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+    alias(libs.plugins.android.library) apply false // замените на текущую версию Kotlin
 }
 
 buildscript {
