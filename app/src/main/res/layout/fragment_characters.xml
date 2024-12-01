@@ -19,7 +19,7 @@
         tools:listitem="@layout/character" />
 
     <Button
-        android:id="@+id/archive"
+        android:id="@+id/clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clear"
@@ -37,12 +37,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/ktor"
+        <EditText
+            android:id="@+id/pageInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Load Characters" />
+            android:hint="Page Number"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/ktor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Load" />
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

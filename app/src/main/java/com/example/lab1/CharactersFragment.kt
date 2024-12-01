@@ -12,7 +12,9 @@ import com.example.lab1.databinding.FragmentCharactersBinding
 import com.example.lab1.enities.CharacterEn
 import com.example.lab1.network.DataSource
 import com.example.lab1.network.KtorNetworkApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CharactersFragment : Fragment() {
     private var _binding: FragmentCharactersBinding? = null
@@ -20,6 +22,8 @@ class CharactersFragment : Fragment() {
 
     private var _ktorApi: KtorNetworkApi? = null
     private val ktorApi get() = _ktorApi ?: throw IllegalStateException("ktorApi is not initialized")
+
+    private val characterAdapter = CharacterAdapter(emptyList())
 
     private val repository: CharacterRepository by lazy {
         val dao = (requireActivity().application as App).getDb().characterDao()
@@ -39,19 +43,53 @@ class CharactersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         _ktorApi = DataSource()
-
         binding.characterRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.characterRecyclerView.adapter = characterAdapter
 
-        binding.ktor.setOnClickListener {
-            lifecycleScope.launch {
-                val characters: List<CharacterRespons> = ktorApi.getCharacters()
-                binding.characterRecyclerView.adapter = CharacterAdapter(characters)
-                saveCharactersToDatabase(characters)
+        // Проверяем базу данных при запуске
+        lifecycleScope.launch {
+            val charactersFromDb = withContext(Dispatchers.IO) {
+                repository.getAllCharacters()
+            }
+            if (charactersFromDb.isEmpty()) {// Если база данных пуста, делаем запрос. По умолчанию 15 стр
+                val charactersFromApi = ktorApi.getCharacters()
+                saveCharactersToDatabase(charactersFromApi)
             }
         }
 
-        binding.archive.setOnClickListener {
-            (binding.characterRecyclerView.adapter as? CharacterAdapter)?.setData(emptyList())
+        // Flow
+        lifecycleScope.launchWhenStarted {
+            repository.getAllCharactersFlow().collect { charactersFromDb ->
+                val characterResponses = charactersFromDb.map {
+                    CharacterRespons(
+                        name = it.name,
+                        culture = it.culture,
+                        born = it.born,
+                        titles = it.titles.split(",").filter { title -> title.isNotEmpty() },
+                        aliases = it.aliases.split(",").filter { alias -> alias.isNotEmpty() },
+                        playedBy = it.playedBy.split(",").filter { actor -> actor.isNotEmpty() }
+                    )
+                }
+                characterAdapter.setData(characterResponses)
+            }
+        }
+
+        // Загрузка новых данных и сохранение в базу
+        binding.ktor.setOnClickListener {
+            val page = binding.pageInput.text.toString().toIntOrNull()
+            if (page != null && page > 0) {
+                lifecycleScope.launch {
+                    val charactersFromApi = ktorApi.getCharacters(page)
+                    saveCharactersToDatabase(charactersFromApi)
+                }
+            } else {
+                binding.pageInput.error = "Введите корректный номер страницы (положительное число)"
+            }
+        }
+
+        // Очистка списка в адаптере
+        binding.clear.setOnClickListener {
+            characterAdapter.setData(emptyList())
         }
     }
 
@@ -72,6 +110,8 @@ class CharactersFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        _ktorApi?.closeClient()
     }
 }
+
 

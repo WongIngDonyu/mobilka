@@ -3,6 +3,7 @@ package com.example.lab1.enities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.lab1.CharacterRespons
 
 @Entity(tableName = "characters")
 data class CharacterEn(
@@ -15,14 +16,7 @@ data class CharacterEn(
     @ColumnInfo(name = "played_by") val playedBy: String,
 ) {
     companion object {
-        fun from(
-            name: String,
-            culture: String,
-            born: String,
-            titles: List<String>,
-            aliases: List<String>,
-            playedBy: List<String>
-        ): CharacterEn {
+        fun from(name: String, culture: String, born: String, titles: List<String>, aliases: List<String>, playedBy: List<String>): CharacterEn {
             return CharacterEn(
                 name = name,
                 culture = culture,

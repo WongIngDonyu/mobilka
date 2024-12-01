@@ -21,11 +21,11 @@ class CharacterAdapter(private var characters: List<CharacterRespons>) : Recycle
         val char = characters[position]
         with(holder.binding) {
             nameTextView.text = char.name.ifEmpty { "-" }
-            cultureTextView.text = char.culture.ifEmpty { "-" }
-            bornTextView.text = char.born.ifEmpty { "-" }
-            titlesTextView.text = char.titles.joinToString().ifEmpty { "-" }
-            aliasesTextView.text = char.aliases.joinToString().ifEmpty { "-" }
-            playedByTextView.text = char.playedBy.joinToString().ifEmpty { "-" }
+            cultureTextView.text = "Culture: ${char.culture.ifEmpty { "-" }}"
+            bornTextView.text = "Born: ${char.born.ifEmpty { "-" }}"
+            titlesTextView.text = "Titles: ${char.titles.joinToString(", ").ifEmpty { "-" }}"
+            aliasesTextView.text = "Aliases: ${char.aliases.joinToString(", ").ifEmpty { "-" }}"
+            playedByTextView.text = "Played by: ${char.playedBy.joinToString(", ").ifEmpty { "-" }}"
         }
     }
 

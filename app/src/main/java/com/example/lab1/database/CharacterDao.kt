@@ -1,13 +1,13 @@
 package com.example.lab1.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.lab1.enities.CharacterEn
 
 @Dao
 interface CharacterDao {
+
     @Query("SELECT * FROM characters")
-    fun getAllLiveData(): LiveData<List<CharacterEn>>
+    fun getAllCharactersFlow(): kotlinx.coroutines.flow.Flow<List<CharacterEn>>
 
     @Query("SELECT * FROM characters")
     fun getAll(): List<CharacterEn>

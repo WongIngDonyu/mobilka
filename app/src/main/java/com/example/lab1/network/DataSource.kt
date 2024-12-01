@@ -21,11 +21,13 @@ import kotlinx.serialization.json.Json
 import kotlin.time.Duration.Companion.seconds
 
 interface KtorNetworkApi {
-    suspend fun getCharacters(): List<CharacterRespons>
+    suspend fun getCharacters(page: Int = 15): List<CharacterRespons>
+    fun closeClient()
 }
+
 private const val NETWORK_BASE_URL = "www.anapioficeandfire.com/api"
 
-class DataSource :KtorNetworkApi {
+class DataSource : KtorNetworkApi {
     private val json = Json {
         isLenient = true
         ignoreUnknownKeys = true
@@ -48,7 +50,7 @@ class DataSource :KtorNetworkApi {
         }
     }
 
-    override suspend fun getCharacters(): List<CharacterRespons> {
+    override suspend fun getCharacters(page: Int): List<CharacterRespons> {
         return try {
             client.get {
                 url {
@@ -56,8 +58,8 @@ class DataSource :KtorNetworkApi {
                     protocol = URLProtocol.HTTPS
                     contentType(ContentType.Application.Json)
                     path("characters")
-                    parameters.append("page", "15")
-                    parameters.append("pageSize", "50")
+                    parameters.append("page", page.toString()) // Передаем номер страницы
+                    parameters.append("pageSize", "50") // Устанавливаем размер страницы
                 }
             }.let { response ->
                 val characters: List<CharacterRespons> = response.body()
@@ -68,5 +70,10 @@ class DataSource :KtorNetworkApi {
             Log.e("Error", exception.message.toString())
             emptyList()
         }
+    }
+
+    override fun closeClient() {
+        client.close()
+        Log.d("KtorClient", "HttpClient закрыт")
     }
 }

@@ -9,10 +9,13 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        //deleteDatabase("characters")
+
         this.db = Room.databaseBuilder(
             this,
             CharacterDatabase::class.java,
             "characters"
+
         ).build()
     }
 

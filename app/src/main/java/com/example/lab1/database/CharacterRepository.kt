@@ -1,15 +1,14 @@
 package com.example.lab1.database
 
-import androidx.lifecycle.LiveData
 import com.example.lab1.enities.CharacterEn
 
 class CharacterRepository(private val characterDao: CharacterDao) {
 
-    fun getAllCharactersLiveData(): LiveData<List<CharacterEn>> {
-        return characterDao.getAllLiveData()
+    fun getAllCharactersFlow(): kotlinx.coroutines.flow.Flow<List<CharacterEn>> {
+        return characterDao.getAllCharactersFlow()
     }
 
-    suspend fun getAllCharacters(): List<CharacterEn> {
+    fun getAllCharacters(): List<CharacterEn> {
         return characterDao.getAll()
     }
 
